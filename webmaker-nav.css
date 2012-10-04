@@ -150,7 +150,7 @@ header {
   height: 60px;
   width: 165px;
   margin: 0 20px;
-  background: url("../img/thimble-logo.png") 0 5px no-repeat;
+  background: url("img/thimble-logo.png") 0 5px no-repeat;
 }
 .project-title {
   font-size: 16px;
