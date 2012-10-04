@@ -58,6 +58,7 @@
 @padding: 12px;
 @secondaryheight: 50px; // Height of the expanded secondary nav
 @headerheight: 62px; // Main header
+@tabzillaOffset: 150px;
 
 // COLORS
 @darkgrey: #3A3C3C;
@@ -75,6 +76,10 @@ header {
 /*********************************************************
 * Webmaker nav
 */
+.webmaker-nav-container {
+  background: @darkgrey;
+  .clearfix();
+}
 
 .webmaker-nav {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
@@ -88,8 +93,14 @@ header {
   li {
     float: left;
     border-right: 1px solid lighten( @darkgrey, 10% );
-    &:last-child {
+    line-height: @webmakerNavHeight;
+    font-size: 1em;
+    color: #FFF;
+    &.no-border {
       border-right: none;
+    }
+    &.fl-right {
+      float: right;
     }
   }
   a {
@@ -97,13 +108,11 @@ header {
     display: block;
     height: 100%;
     background: @darkgrey;
-    color: #FFF ;
-    font-size: 1em;
-    line-height: @webmakerNavHeight;
     padding: 0 @padding;
-    font-weight: 600;
     opacity: 0.4;
+    font-weight: 600;
     text-decoration: none;
+    color: #FFF;
     border-bottom: 0 solid @darkgrey;
     cursor: pointer;
     .transition( border-bottom-width 0 0.2s );
@@ -122,6 +131,7 @@ header {
   &.primary {
     height: @webmakerNavHeight;
     border-bottom: 1px solid lighten( @darkgrey, 15% );
+    padding-right: @tabzillaOffset;
   }
 
   // This is the menu with subnavigation
@@ -164,10 +174,21 @@ header {
   }
 }
 
+.user {
+  img {
+    float: left;
+    margin-right: 4px;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
 #tabzilla {
   position: absolute;
-  top: 0;
   right: 0;
+  top: 0;
 }
 
 /*********************************************************
@@ -213,16 +234,6 @@ header {
   margin-right: 30px;
   border-right: 1px solid @lightgrey;
   .triangle( "right", 5px, #FFF, 1px, @lightgrey );
-}
-.user {
-  font-size: 14px;
-  position: absolute;
-  right: 30px;
-  img {
-    position: relative;
-    top: 7px;
-    margin-right: 6px;
-  }
 }
 
 .main {

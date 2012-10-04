@@ -4,6 +4,18 @@ header {
 /*********************************************************
 * Webmaker nav
 */
+.webmaker-nav-container {
+  background: #3a3c3c;
+  *zoom: 1;
+}
+.webmaker-nav-container:before,
+.webmaker-nav-container:after {
+  content: "";
+  display: table;
+}
+.webmaker-nav-container:after {
+  clear: both;
+}
 .webmaker-nav {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
   background: #3a3c3c;
@@ -24,22 +36,26 @@ header {
 .webmaker-nav li {
   float: left;
   border-right: 1px solid #535656;
+  line-height: 26px;
+  font-size: 1em;
+  color: #FFF;
 }
-.webmaker-nav li:last-child {
+.webmaker-nav li.no-border {
   border-right: none;
+}
+.webmaker-nav li.fl-right {
+  float: right;
 }
 .webmaker-nav a {
   position: relative;
   display: block;
   height: 100%;
   background: #3a3c3c;
-  color: #FFF ;
-  font-size: 1em;
-  line-height: 26px;
   padding: 0 12px;
-  font-weight: 600;
   opacity: 0.4;
+  font-weight: 600;
   text-decoration: none;
+  color: #FFF;
   border-bottom: 0 solid #3a3c3c;
   cursor: pointer;
   -webkit-transition: border-bottom-width 0 0.2s;
@@ -64,6 +80,7 @@ header {
 .webmaker-nav.primary {
   height: 26px;
   border-bottom: 1px solid #606363;
+  padding-right: 150px;
 }
 .webmaker-nav.secondary {
   height: 0;
@@ -102,10 +119,17 @@ header {
 .webmaker-feedback-btn:hover .feedback-label {
   display: inline;
 }
+.user img {
+  float: left;
+  margin-right: 4px;
+}
+.hidden {
+  display: none;
+}
 #tabzilla {
   position: absolute;
-  top: 0;
   right: 0;
+  top: 0;
 }
 /*********************************************************
 * Main white header
@@ -168,16 +192,6 @@ header {
   border-width: 7px;
   top: 50%;
   margin-top: -7px;
-}
-.user {
-  font-size: 14px;
-  position: absolute;
-  right: 30px;
-}
-.user img {
-  position: relative;
-  top: 7px;
-  margin-right: 6px;
 }
 .main {
   padding: 30px;

@@ -37,6 +37,18 @@ document.addEventListener( "DOMContentLoaded", function(){
     el.classList.add( BUTTON_ACTIVE_CLASS );
   };
 
+  function loginDemo() {
+    var login = document.querySelector( ".login" ),
+        user = document.querySelector( ".user" );
+
+    login.addEventListener( "click", function( e ) {
+      this.classList.add( "hidden" );
+      user.classList.remove( "hidden" );
+    }, false );
+  }
+
   webmakerPrimaryNav.addEventListener( "click", webmakerTabSetup, false );
+
+  loginDemo();
 
 }, false);
