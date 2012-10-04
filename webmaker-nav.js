@@ -38,7 +38,7 @@ document.addEventListener( "DOMContentLoaded", function(){
   };
 
   function loginDemo() {
-    var login = document.querySelector( ".login" ),
+    var login = document.querySelector( ".login-join" ),
         user = document.querySelector( ".user" );
 
     login.addEventListener( "click", function( e ) {
