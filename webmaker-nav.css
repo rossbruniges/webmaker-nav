@@ -2,7 +2,7 @@ header {
   position: relative;
 }
 a:hover {
-  color: #dd3534;
+  color: #3985ed;
 }
 /*********************************************************
 * Webmaker nav
@@ -140,14 +140,14 @@ a:hover {
 }
 .webmaker-nav > li.login-join .join {
   position: relative;
-  background: #dd3534;
+  background: #3985ed;
   padding: 2px 12px;
   border-radius: 4px;
   margin-right: 5px;
   cursor: pointer;
 }
 .webmaker-nav > li.login-join .join:hover {
-  background: #e14b4a;
+  background: #5093ef;
 }
 .webmaker-nav > li.user {
   position: relative;
@@ -214,12 +214,12 @@ a:hover {
 }
 .project-title {
   font-size: 16px;
-  color: #3FB58E;
+  color: #3985ed;
   padding-bottom: 5px;
   margin-right: 20px;
 }
 .project-title:hover {
-  border-bottom: 1px dashed #AAA;
+  border-bottom: 1px dashed #3985ed;
 }
 .breadcrumbs {
   position: relative;
@@ -368,7 +368,7 @@ a:hover {
 }
 .btn:hover {
   color: #FFF;
-  background: #e14b4a;
+  background: #3985ed;
 }
 @media screen and (max-width: 600px) {
   .webmaker-nav {
