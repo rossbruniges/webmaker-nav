@@ -11,22 +11,51 @@
   <link rel="stylesheet" href="webmaker-nav.css">
 
 </head>
-<body>
+<body class="webmaker-not-logged-in">
   <header>
     <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
     <!-- Begin webmaker nav -->
     <div class="webmaker-nav-container">
-      <ul class="webmaker-nav primary">
-        <li><a class="on" data-tab="webmaker">Webmaker</a></li>
-        <li><a data-tab="projects">Projects</a></li>
-        <li><a data-tab="tools">Tools</a></li>
-        <li><a data-tab="events">Events</a></li>
-        <li class="no-border"><a href="#" class="webmaker-feedback-btn on"><span class="feedback-icon"></span><span class="feedback-label">Feedback</span></a></li>
-        <li class="login-join fl-right no-border"><span class="join">Join</span><span class="login">Login</span></li>
-        <li class="user fl-right no-border hidden"><img src="img/badge.png">chris@verycoolplace.com</li>
-      </ul>
+
+      <div class="webmaker-nav-top">
+        <ul class="webmaker-nav primary">
+          <li><a class="on" data-tab="webmaker">Webmaker</a></li>
+          <li><a data-tab="projects">Projects</a></li>
+          <li><a data-tab="tools">Tools</a></li>
+          <li><a data-tab="events">Events</a></li>
+          <li class="no-border"><a href="#" class="webmaker-feedback-btn on"><span class="feedback-icon"></span><span class="feedback-label">Feedback</span></a></li>
+        </ul>
+        <ul class="webmaker-nav user-info">
+
+          <li class="login-join no-border no-login-only">
+            <span class="join">Join 
+              <div class="tooltip"><strong>Reason #23</strong>:<br>You can make awesome cat video memes, and feel like you're learning something useful.</div>
+            </span>
+            <span class="login">Login</span>
+          </li>
+
+          <li class="notification-badge login-only"></li>
+
+          <li class="user login-only">
+            <a class="on">
+              <img class="hidden" src="img/badge.png">
+              chris@verycoolplace.com
+               <div class="tooltip tooltip-user tooltip-no-hover">
+                <ul>
+                  <li><a>Badges</a></li>
+                  <li><a>My projects</a></li>
+                  <li><a class="logout-btn">Logout</a></li>
+                  <li><a class="btn">My Persona</a></li>
+                </ul>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <div class="webmaker-tabs">
         <div class="webmaker-nav secondary tab-webmaker">
+          <h2>Mozilla Webmaker is a tool that helps you make stuff on the web.</h2>
         </div>
         <ul class="webmaker-nav secondary tab-projects">
           <li><a href="https://webmaker.org/projects/" target="_blank">All</a></li>
@@ -44,6 +73,7 @@
          <li><a href="https://webmaker.org/events/create" target="_blank">Create</a></li>
         </ul>
       </div>
+
     </div>
     <!-- / webmaker nav -->
     <div class="main-header">

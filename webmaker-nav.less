@@ -14,6 +14,13 @@
   -ms-transition-delay: @delay;
   transition-delay: @delay;
 }
+.box-sizing( @property ) {
+  // https://developer.mozilla.org/En/CSS/Box-sizing
+  -webkit-box-sizing: @property; // Chrome 10-
+  -moz-box-sizing: @property;
+  -ms-box-sizing: @property; // IE 8+
+  box-sizing: @property; // Opera, Safari 5.1+, Chrome 10+
+}
 
 .clearfix() {
   *zoom: 1;
@@ -63,7 +70,9 @@
 // COLORS
 @darkgrey: #3A3C3C;
 @lightgrey: #D6D8D7;
-@red: #E1353B;
+@blue: #3985ED;
+@green: #3FB58E;
+@red: #DD3534;
 
 //FONTS
 @fontsize: 12px;
@@ -74,24 +83,31 @@ header {
   position: relative;
 }
 
+a:hover {
+  color: @red;
+}
+
 /*********************************************************
 * Webmaker nav
 */
-.webmaker-nav-container {
-  background: @darkgrey;
-  .clearfix();
-}
 
+.webmaker-nav-top {
+  background: @darkgrey;
+  height: @webmakerNavHeight;
+  border-bottom: 1px solid lighten( @darkgrey, 15% );
+}
+.webmaker-tabs {
+  background: @darkgrey;
+}
 .webmaker-nav {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
-  background: @darkgrey;
   padding: 0;
   margin: 0;
   font-size: @fontsize;
   list-style: none;
   .clearfix();
 
-  li {
+  > li {
     float: left;
     border-right: 1px solid lighten( @darkgrey, 10% );
     line-height: @webmakerNavHeight;
@@ -104,7 +120,7 @@ header {
       float: right;
     }
   }
-  a {
+  > li > a {
     position: relative;
     display: block;
     height: 100%;
@@ -130,16 +146,25 @@ header {
 
   // This is the menu that always shows up, like "Projects", "Tools", ...
   &.primary {
+    float: left;
     height: @webmakerNavHeight;
-    border-bottom: 1px solid lighten( @darkgrey, 15% );
-    padding-right: @tabzillaOffset;
+  }
+
+  &.user-info {
+    float: right;
+    margin-right: @tabzillaOffset;
+    li {
+      border-right: none;
+    }
   }
 
   // This is the menu with subnavigation
   &.secondary {
+    width: 100%;
     height: 0;
     overflow: hidden;
     line-height: @secondaryheight;
+    color: #FFF;
     .transition( height 0.1s ease-in-out );
     li {
       border-right: none;
@@ -150,6 +175,10 @@ header {
     }
     &.open {
       height: @secondaryheight;
+    }
+    h1, h2, h3, h4 {
+      margin: 0;
+      float: left;
     }
   }
 } //webmaker-nav
@@ -175,34 +204,83 @@ header {
   }
 }
 
-.login-join {
-  .login {
-    opacity: 0.6;
+.webmaker-nav > li {
+  &.tabzilla-container {
+    border: 0;
   }
-  .join {
-    background: @red;
-    padding: 2px 12px;
-    border-radius: 4px;
-    margin-right: 5px;
+  &.login-join {
+    .login {
+      opacity: 0.6;
+    }
+    .join {
+      position: relative;
+      background: @red;
+      padding: 2px 12px;
+      border-radius: 4px;
+      margin-right: 5px;
+      cursor: pointer;
+      &:hover {
+        background: lighten( @red, 5% );
+      }
+    }
   }
-}
 
-.user {
-  img {
-    float: left;
-    margin-right: 4px;
+  &.user {
+    position: relative;
+    > a {
+      padding-left: 5px;
+    }
+    img {
+      float: left;
+      margin-right: 4px;
+      margin-left: -6px;
+    }
   }
+
+  &.notification-badge {
+    background: @darkgrey;
+    height: 15px;
+    width: 15px;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 5px solid lighten( @darkgrey, 15% );
+    opacity: 0.7;
+    .box-sizing( border-box );
+    &:hover {
+      opacity: 1;
+    }
+  }
+
 }
 
 .hidden {
   display: none;
 }
 
-#tabzilla {
-  position: absolute;
-  right: 0;
-  top: 0;
+.tab-webmaker {
+   padding-left: 30px;
 }
+
+/*********************************************************
+* STATES
+*/
+
+// NOT LOGGED IN
+// This is the default state, before the user logs input
+.webmaker-not-logged-in {
+  .login-only {
+    display: none;
+  }
+}
+
+// LOGGED IN
+// This is the default state, before the user logs input
+.webmaker-logged-in {
+  .no-login-only {
+    display: none;
+  }
+}
+
 
 /*********************************************************
 * Main white header
@@ -251,4 +329,129 @@ header {
 
 .main {
   padding: 30px;
+}
+
+// Tooltips
+*:hover > .tooltip:not(.tooltip-no-hover) {
+  opacity: 1;
+  visibility: visible;
+  .transition( opacity 0.3s ease 0.5s );
+}
+
+.tooltip {
+  @_tooltipWidth: 160px;
+  &.tooltip-on {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    .transition( opacity 0.3s ease 0.5s );
+  }
+  &.tooltip-no-transition-on {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  &.tooltip-error {
+    color: red;
+  }
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: 5px;
+  margin-left: -@_tooltipWidth / 2;
+  z-index: 1000000;
+  width: @_tooltipWidth;
+  padding: 10px;
+  background: #FFF;
+  text-shadow: none;
+  color: #555;
+  line-height: 15px;
+  font-size: 11px;
+  .box-sizing( border-box );
+  border-radius: 2px;
+  text-align: center;
+  border: 1px solid #CCC;
+  box-shadow: 0 5px 6px -5px rgba( 0, 0, 0, .3 );
+  pointer-events: none;
+  .transition( opacity 0.3s ease 0 );
+
+  &:after, 
+  &:before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    margin-left: -5px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;  
+    border-bottom: 5px solid #FFF;
+  }
+  &:after {
+    z-index: 1;
+  }
+  &:before {
+    top: -6px;
+    border-bottom: 5px solid #CCC;
+  }
+}
+
+.tooltip-user {
+  margin-top: 6px;
+  width: 120px;
+  margin-left: -60px;
+  padding: 0;
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    > li {
+      padding: 5px;
+      border-bottom: 1px solid #DDD;
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+    > li a {
+      cursor: pointer;
+    }
+  }
+}
+
+#tabzilla {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.btn {
+  display: inline-block;
+  background: #EEE;
+  padding: 4px 8px;
+  border-radius: 2px;
+  &:hover {
+    color: #FFF;
+    background: lighten( @red, 5% );
+  }
+}
+
+
+@media screen and (max-width: 600px ) {
+  .webmaker-nav {
+    width: 100%;
+    > li {
+      width: 100%;
+      border-bottom: 1px solid lighten( @darkgrey, 10% );
+      &.user {
+        float: left;
+        width: 50%;
+      }
+      &.notification-badge {
+        margin-right: 10px;
+      }
+    }
+  }
 }

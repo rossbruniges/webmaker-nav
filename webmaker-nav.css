@@ -1,24 +1,22 @@
 header {
   position: relative;
 }
+a:hover {
+  color: #dd3534;
+}
 /*********************************************************
 * Webmaker nav
 */
-.webmaker-nav-container {
+.webmaker-nav-top {
   background: #3a3c3c;
-  *zoom: 1;
+  height: 26px;
+  border-bottom: 1px solid #606363;
 }
-.webmaker-nav-container:before,
-.webmaker-nav-container:after {
-  content: "";
-  display: table;
-}
-.webmaker-nav-container:after {
-  clear: both;
+.webmaker-tabs {
+  background: #3a3c3c;
 }
 .webmaker-nav {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
-  background: #3a3c3c;
   padding: 0;
   margin: 0;
   font-size: 12px;
@@ -33,20 +31,20 @@ header {
 .webmaker-nav:after {
   clear: both;
 }
-.webmaker-nav li {
+.webmaker-nav > li {
   float: left;
   border-right: 1px solid #535656;
   line-height: 26px;
   font-size: 1em;
   color: #FFF;
 }
-.webmaker-nav li.no-border {
+.webmaker-nav > li.no-border {
   border-right: none;
 }
-.webmaker-nav li.fl-right {
+.webmaker-nav > li.fl-right {
   float: right;
 }
-.webmaker-nav a {
+.webmaker-nav > li > a {
   position: relative;
   display: block;
   height: 100%;
@@ -64,12 +62,12 @@ header {
   -ms-transition: border-bottom-width 0 0.2s;
   transition: border-bottom-width 0 0.2s;
 }
-.webmaker-nav a:hover,
-.webmaker-nav a.active,
-.webmaker-nav a.on {
+.webmaker-nav > li > a:hover,
+.webmaker-nav > li > a.active,
+.webmaker-nav > li > a.on {
   opacity: 1;
 }
-.webmaker-nav a.active {
+.webmaker-nav > li > a.active {
   border-bottom-width: 1px;
   -webkit-transition: border-bottom-width 0 0;
   -moz-transition: border-bottom-width 0 0;
@@ -78,14 +76,22 @@ header {
   transition: border-bottom-width 0 0;
 }
 .webmaker-nav.primary {
+  float: left;
   height: 26px;
-  border-bottom: 1px solid #606363;
-  padding-right: 150px;
+}
+.webmaker-nav.user-info {
+  float: right;
+  margin-right: 150px;
+}
+.webmaker-nav.user-info li {
+  border-right: none;
 }
 .webmaker-nav.secondary {
+  width: 100%;
   height: 0;
   overflow: hidden;
   line-height: 50px;
+  color: #FFF;
   -webkit-transition: height 0.1s ease-in-out;
   -moz-transition: height 0.1s ease-in-out;
   -o-transition: height 0.1s ease-in-out;
@@ -101,6 +107,13 @@ header {
 }
 .webmaker-nav.secondary.open {
   height: 50px;
+}
+.webmaker-nav.secondary h1,
+.webmaker-nav.secondary h2,
+.webmaker-nav.secondary h3,
+.webmaker-nav.secondary h4 {
+  margin: 0;
+  float: left;
 }
 .feedback-icon {
   margin-top: 5px;
@@ -119,26 +132,64 @@ header {
 .webmaker-feedback-btn:hover .feedback-label {
   display: inline;
 }
-.login-join .login {
+.webmaker-nav > li.tabzilla-container {
+  border: 0;
+}
+.webmaker-nav > li.login-join .login {
   opacity: 0.6;
 }
-.login-join .join {
-  background: #e1353b;
+.webmaker-nav > li.login-join .join {
+  position: relative;
+  background: #dd3534;
   padding: 2px 12px;
   border-radius: 4px;
   margin-right: 5px;
+  cursor: pointer;
 }
-.user img {
+.webmaker-nav > li.login-join .join:hover {
+  background: #e14b4a;
+}
+.webmaker-nav > li.user {
+  position: relative;
+}
+.webmaker-nav > li.user > a {
+  padding-left: 5px;
+}
+.webmaker-nav > li.user img {
   float: left;
   margin-right: 4px;
+  margin-left: -6px;
+}
+.webmaker-nav > li.notification-badge {
+  background: #3a3c3c;
+  height: 15px;
+  width: 15px;
+  border-radius: 5px;
+  margin-top: 5px;
+  border: 5px solid #606363;
+  opacity: 0.7;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.webmaker-nav > li.notification-badge:hover {
+  opacity: 1;
 }
 .hidden {
   display: none;
 }
-#tabzilla {
-  position: absolute;
-  right: 0;
-  top: 0;
+.tab-webmaker {
+  padding-left: 30px;
+}
+/*********************************************************
+* STATES
+*/
+.webmaker-not-logged-in .login-only {
+  display: none;
+}
+.webmaker-logged-in .no-login-only {
+  display: none;
 }
 /*********************************************************
 * Main white header
@@ -204,4 +255,134 @@ header {
 }
 .main {
   padding: 30px;
+}
+*:hover > .tooltip:not(.tooltip-no-hover) {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s ease 0.5s;
+  -moz-transition: opacity 0.3s ease 0.5s;
+  -o-transition: opacity 0.3s ease 0.5s;
+  -ms-transition: opacity 0.3s ease 0.5s;
+  transition: opacity 0.3s ease 0.5s;
+}
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: 5px;
+  margin-left: -80px;
+  z-index: 1000000;
+  width: 160px;
+  padding: 10px;
+  background: #FFF;
+  text-shadow: none;
+  color: #555;
+  line-height: 15px;
+  font-size: 11px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 2px;
+  text-align: center;
+  border: 1px solid #CCC;
+  box-shadow: 0 5px 6px -5px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  -webkit-transition: opacity 0.3s ease 0;
+  -moz-transition: opacity 0.3s ease 0;
+  -o-transition: opacity 0.3s ease 0;
+  -ms-transition: opacity 0.3s ease 0;
+  transition: opacity 0.3s ease 0;
+}
+.tooltip.tooltip-on {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  -webkit-transition: opacity 0.3s ease 0.5s;
+  -moz-transition: opacity 0.3s ease 0.5s;
+  -o-transition: opacity 0.3s ease 0.5s;
+  -ms-transition: opacity 0.3s ease 0.5s;
+  transition: opacity 0.3s ease 0.5s;
+}
+.tooltip.tooltip-no-transition-on {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.tooltip.tooltip-error {
+  color: red;
+}
+.tooltip:after,
+.tooltip:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #FFF;
+}
+.tooltip:after {
+  z-index: 1;
+}
+.tooltip:before {
+  top: -6px;
+  border-bottom: 5px solid #CCC;
+}
+.tooltip-user {
+  margin-top: 6px;
+  width: 120px;
+  margin-left: -60px;
+  padding: 0;
+}
+.tooltip-user ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.tooltip-user ul > li {
+  padding: 5px;
+  border-bottom: 1px solid #DDD;
+}
+.tooltip-user ul > li:last-child {
+  border-bottom: 0;
+}
+.tooltip-user ul > li a {
+  cursor: pointer;
+}
+#tabzilla {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.btn {
+  display: inline-block;
+  background: #EEE;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.btn:hover {
+  color: #FFF;
+  background: #e14b4a;
+}
+@media screen and (max-width: 600px) {
+  .webmaker-nav {
+    width: 100%;
+  }
+  .webmaker-nav > li {
+    width: 100%;
+    border-bottom: 1px solid #535656;
+  }
+  .webmaker-nav > li.user {
+    float: left;
+    width: 50%;
+  }
+  .webmaker-nav > li.notification-badge {
+    margin-right: 10px;
+  }
 }
